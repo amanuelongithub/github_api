@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart';
 import 'package:git_hub_clone/src/model/user.dart';
 
@@ -7,7 +7,6 @@ import '../model/userlist.dart';
 
 class AppUrl {
   static var baseUrl = 'https://api.github.com';
-  // static var followerUrl = baseUrl+ 'octocat/followers';
 }
 
 class AppAPI {
@@ -15,10 +14,12 @@ class AppAPI {
     List<UserList> userList = <UserList>[];
 
     try {
+      var pref = await SharedPreferences.getInstance();
+
       var dio = Dio();
       dio.options.headers['content-Type'] = 'application/json';
       dio.options.headers["Authorization"] =
-          'Bearer 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';
+          'Bearer ${pref.getString('token')}';
 
       Response response = await dio.get(
         '${AppUrl.baseUrl}/users',
@@ -32,6 +33,10 @@ class AppAPI {
         for (var userMap in parsedData) {
           try {
             userList.add(UserList.fromJson(userMap));
+            // var singleUser =await  AppAPI().searchUser('amanuelongithub');
+            // if (singleUser != null) {
+            //   userList.add(singleUser);
+            // }
           } catch (error) {
             continue;
           }
@@ -57,10 +62,12 @@ class AppAPI {
   Future<User?> searchUser(String username) async {
     User? user;
     try {
+      var pref = await SharedPreferences.getInstance();
+
       var dio = Dio();
       dio.options.headers['content-Type'] = 'application/json';
       dio.options.headers["Authorization"] =
-          'Bearer Your Token';
+          'Bearer  ${pref.getString('token')}';
 
       Response response = await dio.get(
         '${AppUrl.baseUrl}/users/$username',
