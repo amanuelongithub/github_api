@@ -60,7 +60,7 @@ class AppAPI {
       var dio = Dio();
       dio.options.headers['content-Type'] = 'application/json';
       dio.options.headers["Authorization"] =
-          'Bearer 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';
+          'Bearer Your Token';
 
       Response response = await dio.get(
         '${AppUrl.baseUrl}/users/$username',
