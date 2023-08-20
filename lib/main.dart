@@ -14,6 +14,7 @@ void main() {
 setToken() async {
   SharedPreferences pref = await SharedPreferences.getInstance();
   pref.setString('token', 'Your Token here');
+  // print(pref.getString(''));
 }
 
 class MyApp extends StatelessWidget {

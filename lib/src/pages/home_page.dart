@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:git_hub_clone/src/controllers/leading_controller.dart';
 import 'package:git_hub_clone/src/model/user.dart';
+import 'package:git_hub_clone/src/pages/detail_page.dart';
 
 import '../api/api_controller.dart';
 import '../model/userlist.dart';
@@ -115,6 +116,10 @@ class HomePage extends StatelessWidget {
                                 );
                               } else {
                                 return ListTile(
+                                  onTap: () {
+                                    Get.to(() => DetailePage(
+                                        username: snapshot.data!.login));
+                                  },
                                   leading: CircleAvatar(
                                     radius: 30,
                                     backgroundImage:
@@ -179,6 +184,10 @@ class HomePage extends StatelessWidget {
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: ListTile(
+                                        onTap: () {
+                                          Get.to(() => DetailePage(
+                                              username: user.login));
+                                        },
                                         leading: CircleAvatar(
                                           radius: 30,
                                           backgroundColor: Colors.grey,
