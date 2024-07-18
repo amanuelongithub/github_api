@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:git_hub_clone/src/api/api_controller.dart';
 
 import '../model/user.dart';
@@ -15,9 +13,9 @@ class DetailePage extends StatelessWidget {
         child: Scaffold(
       appBar: AppBar(
         title: const Text('User Detaile'),
-        backgroundColor: Color.fromARGB(255, 43, 37, 62),
+        backgroundColor: const Color.fromARGB(255, 43, 37, 62),
       ),
-      backgroundColor: Color.fromARGB(255, 0, 0, 0),
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       body: FutureBuilder<User?>(
           future: AppAPI().searchUser(username),
           builder: (context, snapshot) {
@@ -49,9 +47,9 @@ class DetailePage extends StatelessWidget {
                       Stack(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(top: 80),
+                            margin: const EdgeInsets.only(top: 80),
                             decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 44, 36, 52),
+                                color: const Color.fromARGB(255, 44, 36, 52),
                                 borderRadius: BorderRadius.circular(20)),
                             width: double.infinity,
                             height: 300,
@@ -60,7 +58,7 @@ class DetailePage extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Flexible(child: Container(), flex: 2),
+                                  Flexible(flex: 2, child: Container()),
                                   Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
@@ -85,9 +83,9 @@ class DetailePage extends StatelessWidget {
                                         //     child: Text('Unfollow'))
                                         Row(
                                           children: [
-                                            Text(
+                                            const Text(
                                               'Followers  ',
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 20,
                                                   color: Colors.white),
@@ -106,9 +104,9 @@ class DetailePage extends StatelessWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Text(
+                                            const Text(
                                               'Following  ',
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 20,
                                                   color: Colors.white),
@@ -131,7 +129,7 @@ class DetailePage extends StatelessWidget {
                                         child: Text(
                                           snapshot.data!.bio ?? '_',
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: Color.fromARGB(
                                                   255, 185, 185, 185),
                                               fontSize: 15),
@@ -159,15 +157,15 @@ class DetailePage extends StatelessWidget {
                                           snapshot.data!.avatarUrl),
                                     ),
                                   ),
-                                  SizedBox(height: 15),
+                                  const SizedBox(height: 15),
                                   Text(
-                                    snapshot.data!.name ?? 'Anonymouss',
+                                    snapshot.data!.name,
                                     style: const TextStyle(
                                         color: Colors.white, fontSize: 20),
                                   ),
-                                  SizedBox(height: 13),
+                                  const SizedBox(height: 13),
                                   Text(
-                                    snapshot.data!.location ?? 'location',
+                                    snapshot.data!.location,
                                     style: const TextStyle(
                                         color:
                                             Color.fromARGB(255, 134, 134, 134),

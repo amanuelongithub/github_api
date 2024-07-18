@@ -10,6 +10,8 @@ class AppUrl {
 }
 
 class AppAPI {
+       String? message = 'Some error occurred';
+
   Future<List<UserList>> githubUsers() async {
     List<UserList> userList = <UserList>[];
 
@@ -46,7 +48,6 @@ class AppAPI {
             'Failed to fetch search results: server returned ${response.statusCode}');
       }
     } catch (e) {
-      String? message = 'Some error occurred';
 
       if (e is DioException) {
         if (e.response?.statusCode == 403) {
@@ -80,11 +81,10 @@ class AppAPI {
 
         user = User.fromJson(val);
       } else {
-        final message = response.data['message'];
+         message = response.data['message'];
       }
     } catch (e) {
-      String? message = 'Some error occurred';
-
+   
       if (e is DioException) {
         if (e.response?.statusCode == 403) {
           message = e.response!.statusMessage;
@@ -92,9 +92,7 @@ class AppAPI {
           message = e.response!.data['message'];
         }
       }
-      print(e);
     }
-    print(user);
     return user;
   }
   

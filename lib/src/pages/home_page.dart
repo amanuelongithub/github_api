@@ -4,11 +4,13 @@ import 'package:git_hub_clone/src/controllers/leading_controller.dart';
 import 'package:git_hub_clone/src/model/user.dart';
 import 'package:git_hub_clone/src/pages/detail_page.dart';
 
-import '../api/api_controller.dart';
 import '../model/userlist.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
   var leadingController = Get.find<LeadingController>();
+
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class HomePage extends StatelessWidget {
     return SafeArea(
       child: Obx(() {
         return Scaffold(
-          backgroundColor: Color.fromARGB(255, 34, 33, 43),
+          backgroundColor: const Color.fromARGB(255, 34, 33, 43),
           body: Column(children: [
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -37,17 +39,17 @@ class HomePage extends StatelessWidget {
                       scale: 2,
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: TextField(
                       controller: leadingController.searchgitUser.value,
                       style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         hintText: "search",
-                        hintStyle: TextStyle(
+                        hintStyle: const TextStyle(
                             color: Color.fromARGB(255, 136, 136, 136),
                             fontSize: 14),
-                        fillColor: Color.fromARGB(191, 45, 39, 53),
+                        fillColor: const Color.fromARGB(191, 45, 39, 53),
                         filled: true,
                         border: inputBorder,
                         enabledBorder: inputBorder,
@@ -126,7 +128,7 @@ class HomePage extends StatelessWidget {
                                         NetworkImage(snapshot.data!.avatarUrl),
                                   ),
                                   title: Text(
-                                    snapshot.data!.name ?? 'Anonymouss',
+                                    snapshot.data!.name,
                                     style: const TextStyle(color: Colors.white),
                                   ),
                                   subtitle: Text(
@@ -156,11 +158,11 @@ class HomePage extends StatelessWidget {
                               );
                             }
                             if (snapshot.hasData) {
-                              if (snapshot.data!.length == 0) {
+                              if (snapshot.data!.isEmpty) {
                                 return const Center(
                                   child: Text(
                                     "Empty",
-                                    style: const TextStyle(color: Colors.white),
+                                    style:  TextStyle(color: Colors.white),
                                   ),
                                 );
                               }
@@ -177,10 +179,10 @@ class HomePage extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     UserList user = snapshot.data![index];
                                     return Container(
-                                      margin: EdgeInsets.only(bottom: 10),
+                                      margin: const EdgeInsets.only(bottom: 10),
                                       decoration: BoxDecoration(
                                           color:
-                                              Color.fromARGB(255, 53, 51, 67),
+                                              const Color.fromARGB(255, 53, 51, 67),
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: ListTile(
@@ -200,7 +202,7 @@ class HomePage extends StatelessWidget {
                                               color: Colors.white),
                                         ),
                                         subtitle: Text(
-                                          '${user.type}',
+                                          user.type,
                                           style: const TextStyle(
                                               color: Color.fromARGB(
                                                   255, 147, 147, 147)),
